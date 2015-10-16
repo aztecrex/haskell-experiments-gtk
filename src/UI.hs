@@ -11,10 +11,13 @@ go :: IO ()
 go = do
   initGUI
   window <- windowNew
-  button <- buttonNew
+  hbox <- hBoxNew True 10
+  button1 <- buttonNewWithLabel "Button 1"
+  button2 <- buttonNewWithLabel "Button 2"
   set window [windowDefaultWidth := 200, windowDefaultHeight := 200,
-              containerChild := button, containerBorderWidth := 10]
-  onClicked button (hello button)
+              containerChild := hbox, containerBorderWidth := 10]
+  boxPackStart hbox button1 PackGrow 0
+  boxPackStart hbox button2 PackGrow 0
   onDestroy window mainQuit
   widgetShowAll window
   mainGUI
